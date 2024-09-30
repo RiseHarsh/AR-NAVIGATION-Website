@@ -1,0 +1,13 @@
+{
+    "routes": [
+      {
+        "src": "/",
+        "dest": "/Website/dashboard.html"
+      },
+      {
+        "src": "/Website/signin",
+        "dest": "/Website/signin.html"
+      }
+    ]
+  }
+  

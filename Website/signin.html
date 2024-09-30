@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="signin.css">
+    <title>Sign in to AR-APSIT</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="form-container">
+            <img src="../Website/ar.png" alt="Logo" class="logo">
+            <strong>
+                <p id="para">AR-APSIT</p>
+            </strong>
+            <h3 id="h3">Student Login</h3>
+
+            <form id="signin-form">
+                <label for="MoodleId">Moodle Id:</label>
+                <input type="text" id="MoodleId" name="MoodleId" required>
+
+                <label for="Password">Password:</label>
+                <input type="password" id="Password" name="Password" required>
+                <!-- Continue Button for Authenticated User -->
+                <button type="submit" class="continue-btn">Continue</button>
+                <p>OR</p>
+
+                <!-- Guest User Button -->
+                <button type="button" id="guest-user-btn">Guest User</button>
+                
+            </form>
+
+            <div id="error-message" style="color: red;"></div> <!-- Error message display -->
+        </div>
+        <footer>
+            <p>&copy; 2024 AR-APSIT</p>
+            <div class="footer-links">
+                <a href="#">Support</a>
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Add event listener for Guest User button
+        document.getElementById('guest-user-btn').addEventListener('click', function () {
+            // Redirect to dashboard page as a guest
+            window.localStorage.removeItem("session"); // Ensure no session for guest users
+            window.location.href = '../Website/dashboard.html'; // Redirect to dashboard
+        });
+
+        document.getElementById('signin-form').addEventListener('submit', async function (event) {
+            event.preventDefault(); // Prevent default form submission
+            console.log('Form is being submitted'); // Debugging log
+
+            // Get values from the form fields
+            const MoodleId = document.getElementById('MoodleId').value;
+            const Password = document.getElementById('Password').value;
+
+            // Check if both fields are filled
+            if (!MoodleId || !Password) {
+                console.error('MoodleId or password field is missing in the form.');
+                return; // Exit the function if fields are missing
+            }
+
+            try {
+                const response = await fetch('http://localhost:3000/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ MoodleId, Password }),
+                    credentials: 'include' // Important for sending cookies
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    window.localStorage.setItem("session", true); // Store user session in localStorage
+                    window.location.href = '../Website/dashboard.html'; // Redirect on successful login
+                } else {
+                    console.error(result.message);
+                    alert(result.message); // Show error message to the user
+                }
+
+            } catch (error) {
+                console.error('Error during login:', error);
+            }
+        });
+    </script>
+</body>
+
+</html>
