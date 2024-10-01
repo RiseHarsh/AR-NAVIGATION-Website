@@ -2,11 +2,11 @@
     "routes": [
       {
         "src": "/",
-        "dest": "/Website/dashboard.html"
+        "dest": "/dashboard.html"
       },
       {
-        "src": "/Website/signin.html",
-        "dest": "/Website/signin.html"
+        "src": "/signin.html",
+        "dest": "/signin.html"
       }
     ]
   }
