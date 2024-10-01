@@ -7,7 +7,7 @@ const app = express();
 
 // Enable CORS
 app.use(cors({
-    origin: ['https://ar-navigation-c1ius2o56-kartik-patils-projects.vercel.app'], // Replace with your Vercel app URL 
+    origin: ['ar-navigation-2xepz1xkh-kartik-patils-projects.vercel.app'], // Replace with your Vercel app URL 
     credentials: true // If you need to send cookies or authorization headers
 }));
 
