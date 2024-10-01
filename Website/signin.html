@@ -12,7 +12,7 @@
 <body>
     <div class="container">
         <div class="form-container">
-            <img src="../Website/ar.png" alt="Logo" class="logo">
+            <img src="ar.png" alt="Logo" class="logo">
             <strong>
                 <p id="para">AR-APSIT</p>
             </strong>
@@ -80,7 +80,7 @@
                 const result = await response.json();
                 if (result.success) {
                     window.localStorage.setItem("session", true); // Store user session in localStorage
-                    window.location.href = '../Webs/dashboard.html'; // Redirect on successful login
+                    window.location.href = '/'; // Redirect on successful login
                 } else {
                     console.error(result.message);
                     alert(result.message); // Show error message to the user
