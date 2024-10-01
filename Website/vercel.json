@@ -5,7 +5,7 @@
         "dest": "/Website/dashboard.html"
       },
       {
-        "src": "/Website/signin",
+        "src": "/Website/signin.html",
         "dest": "/Website/signin.html"
       }
     ]
