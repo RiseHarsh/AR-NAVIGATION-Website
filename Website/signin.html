@@ -80,7 +80,7 @@
                 const result = await response.json();
                 if (result.success) {
                     window.localStorage.setItem("session", true); // Store user session in localStorage
-                    window.location.href = '../Website/dashboard.html'; // Redirect on successful login
+                    window.location.href = '../dashboard.html'; // Redirect on successful login
                 } else {
                     console.error(result.message);
                     alert(result.message); // Show error message to the user
