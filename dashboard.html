@@ -196,7 +196,20 @@
           window.scrollBy(0, 75); // Adjust 75 to a higher or lower number as needed
         }, 500); // Delay to match the smooth scrolling duration
       }
-
+ 
+      function scrollToFeatures() {
+        const featuresSection = document.getElementById("faq");
+        featuresSection.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+  
+          // Add a slight delay before adjusting the scroll to ensure scrollIntoView completes
+          setTimeout(() => {
+            // Adjust the scroll position by adding an offset (positive value scrolls down more)
+            window.scrollBy(0, 75); // Adjust 75 to a higher or lower number as needed
+          }, 500); // Delay to match the smooth scrolling duration
+        }
 
       const chatbox = document.getElementById("chatbox");
       const userMessageElement = document.getElementById("user-message");
