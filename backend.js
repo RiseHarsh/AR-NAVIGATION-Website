@@ -5,23 +5,32 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
 
-// Enable CORS
+// Allow multiple origins (localhost for development, and Vercel for production)
+const allowedOrigins = ['http://127.0.0.1:3001', 'https://ar-navigation-alpha.vercel.app'];
+
 app.use(cors({
-    origin: 'https://ar-navigation-alpha.vercel.app', // Replace with your Vercel app URL 
-    credentials: true // If you need to send cookies or authorization headers
+    origin: function (origin, callback) {
+        if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    credentials: true // To send cookies or authorization headers
 }));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Set up session middleware
+// Set up session middleware with secure options
 app.use(session({
-    secret: 'your_secret_key', // Replace with your own secret key
+    secret: 'your_secret_key', // Replace with a strong secret key
     resave: false,
     saveUninitialized: true,
     cookie: { 
         maxAge: 86400000, // 24 hours
-        secure: false // Set secure to true in production with HTTPS
+        secure: false, // Set to true in production if using HTTPS
+        httpOnly: true // Helps prevent cross-site scripting (XSS) attacks
     }
 }));
 
@@ -35,7 +44,10 @@ const db = mysql.createConnection({
 
 // Connect to the database
 db.connect(err => {
-    if (err) throw err;
+    if (err) {
+        console.error('Error connecting to the database:', err);
+        throw err;
+    }
     console.log('Connected to SQL database');
 });
 
@@ -48,7 +60,7 @@ app.post('/login', (req, res) => {
         return res.json({ success: false, message: 'MoodleId and Password are required' });
     }
 
-    // Query to find the user
+    // Query to find the user with encrypted password
     const query = 'SELECT * FROM users WHERE MoodleId = ? AND Password = SHA2(?, 256)';
     db.query(query, [MoodleId, Password], (err, result) => {
         if (err) {
@@ -69,7 +81,7 @@ app.post('/login', (req, res) => {
                 res.json({ success: true, message: 'Login successful' });
             });
         } else {
-            res.json({ success: false, message: 'Invalid Moodle Id or Password' });
+            res.json({ success: false, message: 'Invalid MoodleId or Password' });
         }
     });
 });
