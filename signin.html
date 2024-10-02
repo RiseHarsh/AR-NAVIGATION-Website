@@ -50,7 +50,7 @@
         document.getElementById('guest-user-btn').addEventListener('click', function () {
             // Redirect to dashboard page as a guest
             window.localStorage.removeItem("session"); // Ensure no session for guest users
-            window.location.href = '../Website/dashboard.html'; // Redirect to dashboard
+            window.location.href = 'dashboard.html'; // Redirect to dashboard
         });
 
         document.getElementById('signin-form').addEventListener('submit', async function (event) {
