@@ -29,7 +29,7 @@
           </li>
           <li>Resources
             <ul type="none">
-              <li><a href="#" onclick="scrollToFeatures()">FAQ</a></li>
+              <li><a href="#" onclick="scrollToFaq()">FAQ</a></li>
               <li><a href="#">Community</a></li>
               <li><a href="#">Tutorials</a></li>
             </ul>
@@ -111,8 +111,8 @@
   </section>
 
 
-  <footer class="footer" id="faq">
-    <div class="faq-container">
+  <footer class="footer">
+    <div class="faq-container" id="faq">
       <h2 class="wp-block-heading has-text-align-center"><strong>FAQ</strong></h2>
       <div class="faq-item">
         <h3 class="faq-question">Q1: What is the AR-APSIT navigation system?</h3>
@@ -226,30 +226,27 @@
     }
 
     // Smooth scroll to the Features section
+    // Smooth scroll to the Features section
     function scrollToFeatures() {
       const featuresSection = document.getElementById("features");
       featuresSection.scrollIntoView({
         behavior: "smooth",
         block: "center",
       });
-
-      // Add a slight delay before adjusting the scroll to ensure scrollIntoView completes
+      // Adjust the scroll position after smooth scrolling
       setTimeout(() => {
-        // Adjust the scroll position by adding an offset (positive value scrolls down more)
-        window.scrollBy(0, 75); // Adjust 75 to a higher or lower number as needed
+        window.scrollBy(0, 0); // You can adjust the offset if necessary
       }, 500); // Delay to match the smooth scrolling duration
     }
-
-    function scrollToFeatures() {
-      const featuresSection = document.getElementById("faq");
-      featuresSection.scrollIntoView({
+    // Smooth scroll to the FAQ section
+    function scrollToFaq() {
+      const faqSection = document.getElementById("faq");
+      faqSection.scrollIntoView({
         behavior: "smooth",
         block: "center",
       });
-
-      // Add a slight delay before adjusting the scroll to ensure scrollIntoView completes
+      // Adjust the scroll position after smooth scrolling
       setTimeout(() => {
-        // Adjust the scroll position by adding an offset (positive value scrolls down more)
         window.scrollBy(0, 75); // Adjust 75 to a higher or lower number as needed
       }, 500); // Delay to match the smooth scrolling duration
     }
