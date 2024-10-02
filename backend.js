@@ -36,9 +36,9 @@ app.use(session({
 
 // MySQL Database Connection
 const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'K@rtik2004', // Replace with your actual password
+    host: 'arcredentials.cngcauss03ti.ap-south-1.rds.amazonaws.com',
+    user: 'admin',
+    password: 'KartikJPatil120804', // Replace with your actual password
     database: 'arcredentials'
 });
 
