@@ -30,7 +30,7 @@
 
                 <!-- Guest User Button -->
                 <button type="button" id="guest-user-btn">Guest User</button>
-                
+
             </form>
 
             <div id="error-message" style="color: red;"></div> <!-- Error message display -->
@@ -64,6 +64,7 @@
             // Check if both fields are filled
             if (!MoodleId || !Password) {
                 console.error('MoodleId or password field is missing in the form.');
+                document.getElementById('error-message').innerText = 'Please fill in both fields.';
                 return; // Exit the function if fields are missing
             }
 
@@ -83,11 +84,12 @@
                     window.location.href = '/'; // Redirect on successful login
                 } else {
                     console.error(result.message);
-                    alert(result.message); // Show error message to the user
+                    document.getElementById('error-message').innerText = result.message; // Show error message to the user
                 }
 
             } catch (error) {
                 console.error('Error during login:', error);
+                document.getElementById('error-message').innerText = 'An error occurred during login. Please try again.'; // General error message
             }
         });
     </script>
