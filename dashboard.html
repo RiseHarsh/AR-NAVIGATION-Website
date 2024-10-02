@@ -12,45 +12,45 @@
 </head>
 
 <body>
-<section class="section0">
-  <header>
-    <div class="logo">
-      <a href="/" target="_blank">
-        <img src="apsit.png" alt="ailogo" style="cursor: pointer;">
-      </a>
-    </div>
-    <nav>
-      <ul class="nav">
-        <li>Solutions
-          <ul type="none">
-            <li><a href="#">Overview</a></li>
-            <li><a href="#">IndoorMaps</a></li>
-          </ul>
-        </li>
-        <li>Resources
-          <ul type="none">
-            <li><a href="#" onclick="scrollToFeatures()">FAQ</a></li>
-            <li><a href="#">Community</a></li>
-            <li><a href="#">Tutorials</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="#" id="logout-btn" style="display: none;" onclick="logout()">Logout</a>
-          <a href="/signin.html" id="profile-btn">Are you from APSIT?</a>
-        </li>
-      </ul>
-    </nav>
-  </header>
+  <section class="section0">
+    <header>
+      <div class="logo">
+        <a href="/" target="_blank">
+          <img src="apsit.png" alt="ailogo" style="cursor: pointer;">
+        </a>
+      </div>
+      <nav>
+        <ul class="nav">
+          <li>Solutions
+            <ul type="none">
+              <li><a href="#">Overview</a></li>
+              <li><a href="#">IndoorMaps</a></li>
+            </ul>
+          </li>
+          <li>Resources
+            <ul type="none">
+              <li><a href="#" onclick="scrollToFeatures()">FAQ</a></li>
+              <li><a href="#">Community</a></li>
+              <li><a href="#">Tutorials</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" id="logout-btn" style="display: none;" onclick="logout()">Logout</a>
+            <a href="/signin.html" id="profile-btn">Are you from APSIT?</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
 
 
-  <section class="section1">
-    <h1>AR APSIT</h1>
-    <h2>AR NAVIGATION SYSTEM</h2>
-    <a href="#" class="button" onclick="scrollToFeatures()">Get Started</a>
+    <section class="section1">
+      <h1>AR APSIT</h1>
+      <h2>AR NAVIGATION SYSTEM</h2>
+      <a href="#" class="button" onclick="scrollToFeatures()">Get Started</a>
+    </section>
   </section>
-</section>
 
-  <section class="section2" id="features" >
+  <section class="section2" id="features">
     <h2>Our Features</h2>
     <p>AR-APSIT.ai offers a wide range of features to enhance your indoor experience.</p>
 
@@ -148,8 +148,51 @@
         <div class="faq-answer">A5: Users can provide feedback or report issues through the app's feedback section or by
           contacting customer support directly. We appreciate your input to help improve the system!</div>
       </div>
-
     </div>
+
+    <!-- Feedback Form at the bottom of the page -->
+    <div class="feedback-container">
+      <h3>We value your feedback!</h3>
+      <form id="feedback-form">
+        <div class="form-group">
+          <label for="name">Your Name:</label>
+          <input type="text" id="name" name="name" placeholder="Enter your name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Your Email:</label>
+          <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        </div>
+        <div class="form-group">
+          <label for="feedback-type">Type of Feedback:</label>
+          <select id="feedback-type" name="feedback-type" required>
+            <option value="">Select feedback type</option>
+            <option value="Suggestion">Suggestion</option>
+            <option value="Complaint">Complaint</option>
+            <option value="Compliment">Compliment</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="feedback">Your Feedback:</label>
+          <textarea id="feedback" name="feedback" rows="4" placeholder="Enter your feedback..." required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="rating">Rate your experience:</label>
+          <select id="rating" name="rating" required>
+            <option value="">Select a rating</option>
+            <option value="1">1 - Poor</option>
+            <option value="2">2 - Fair</option>
+            <option value="3">3 - Good</option>
+            <option value="4">4 - Very Good</option>
+            <option value="5">5 - Excellent</option>
+          </select>
+        </div>
+        <button type="submit" class="submit-btn">Submit Feedback</button>
+      </form>
+      <div id="feedback-message"></div>
+    </div>
+
+
     <p>&copy; 2024 AR-APSIT.ai All rights reserved.</p>
   </footer>
 
@@ -190,161 +233,218 @@
         block: "center",
       });
 
-        // Add a slight delay before adjusting the scroll to ensure scrollIntoView completes
-        setTimeout(() => {
-          // Adjust the scroll position by adding an offset (positive value scrolls down more)
-          window.scrollBy(0, 75); // Adjust 75 to a higher or lower number as needed
-        }, 500); // Delay to match the smooth scrolling duration
+      // Add a slight delay before adjusting the scroll to ensure scrollIntoView completes
+      setTimeout(() => {
+        // Adjust the scroll position by adding an offset (positive value scrolls down more)
+        window.scrollBy(0, 75); // Adjust 75 to a higher or lower number as needed
+      }, 500); // Delay to match the smooth scrolling duration
+    }
+
+    function scrollToFeatures() {
+      const featuresSection = document.getElementById("faq");
+      featuresSection.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+
+      // Add a slight delay before adjusting the scroll to ensure scrollIntoView completes
+      setTimeout(() => {
+        // Adjust the scroll position by adding an offset (positive value scrolls down more)
+        window.scrollBy(0, 75); // Adjust 75 to a higher or lower number as needed
+      }, 500); // Delay to match the smooth scrolling duration
+    }
+
+    const chatbox = document.getElementById("chatbox");
+    const userMessageElement = document.getElementById("user-message");
+    const sendBtn = document.getElementById("send-btn");
+    const recommendedQuestions = document.getElementById("recommended-questions");
+    const chatbotContainer = document.getElementById("chatbot-container");
+    const chatbotToggler = document.getElementById("chatbot-toggler");
+    const closeBtn = document.getElementById("close-btn");
+    const refreshBtn = document.getElementById("refresh-btn");
+
+    const questionsSet = [
+      [
+        "How to start navigation",
+        "nearest restrooms",
+        "find the main entrance",
+
+      ],
+      [
+        "time to reach my destination",
+        "way to the cafeteria",
+        "shortcut to the library",
+
+      ],
+      [
+        "is there an elevator nearby",
+        "help finding the conference room",
+        "landmarks near me",
+      ],
+    ];
+
+    // Function to render recommended questions
+    const renderQuestions = () => {
+      recommendedQuestions.innerHTML = "";
+      const randomSet =
+        questionsSet[Math.floor(Math.random() * questionsSet.length)];
+      randomSet.forEach((question) => {
+        const listItem = document.createElement("li");
+        listItem.textContent = question;
+        listItem.addEventListener("click", () => sendMessage(question));
+        recommendedQuestions.appendChild(listItem);
+      });
+    };
+
+    // Function to send a message and receive a response
+    const sendMessage = (message) => {
+      if (!message) return;
+
+      // Add user's message to chat
+      const outgoingChat = document.createElement("li");
+      outgoingChat.classList.add("chat", "outgoing");
+      outgoingChat.innerHTML = `<p>${message}</p>`;
+      chatbox.appendChild(outgoingChat);
+
+      // Simulate bot response
+      const incomingChat = document.createElement("li");
+      incomingChat.classList.add("chat", "incoming");
+      incomingChat.innerHTML = `<p>Let me check that for you...</p>`;
+      chatbox.appendChild(incomingChat);
+
+      chatbox.scrollTop = chatbox.scrollHeight;
+
+      // Simulated delay for response
+      setTimeout(() => {
+        const botResponse = generateBotResponse(message);
+        incomingChat.querySelector("p").textContent = botResponse;
+      }, 1000);
+    };
+
+    // Function to generate bot responses
+    const generateBotResponse = (message) => {
+      const responses = {
+        "start navigation":
+          "To start navigation, please enter your current location and your destination.",
+        "nearest restrooms":
+          "Sure! Please allow me access to your current location, and I'll show you the nearest restrooms.",
+        "find the main entrance":
+          "The main entrance is marked with a large blue arrow in the AR view. Just follow the arrow to reach the main entrance.",
+        "landmarks near me":
+          "I can help with that! Let me access your location to show nearby landmarks on your AR view.",
+        "time to reach my destination":
+          "Based on your current location and the destination, it should take approximately 10 minutes on foot.",
+        "shortcut to the library":
+          "Yes, there is a shortcut. Follow the highlighted path in your AR view to take the quickest route to the library.",
+        "way to the cafeteria":
+          "Sure! Follow the green path in your AR view to reach the cafeteria.",
+        "help finding the conference room":
+          "No problem! Just enter the name or number of the conference room, and I will guide you there.",
+        "find a charging station":
+          "There are charging stations located throughout the building. Let me show them in your AR view.",
+        "is there an elevator nearby":
+          "Yes, there's an elevator close to you. Follow the yellow path in your AR view to reach it.",
+        // Additional responses can be added as needed
+      };
+      return (
+        responses[message] || "Sorry, I do not have information on that topic."
+      );
+    };
+
+    // Event listener for send button
+    sendBtn.addEventListener("click", () => {
+      const userMessage = userMessageElement.value.trim();
+      sendMessage(userMessage);
+      userMessageElement.value = "";
+    });
+
+    // Allow Enter key to send message
+    userMessageElement.addEventListener("keypress", (e) => {
+      if (e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault();
+        sendBtn.click();
       }
- 
-      function scrollToFeatures() {
-        const featuresSection = document.getElementById("faq");
-        featuresSection.scrollIntoView({
-          behavior: "smooth",
-          block: "center",
-        });
-  
-          // Add a slight delay before adjusting the scroll to ensure scrollIntoView completes
-          setTimeout(() => {
-            // Adjust the scroll position by adding an offset (positive value scrolls down more)
-            window.scrollBy(0, 75); // Adjust 75 to a higher or lower number as needed
-          }, 500); // Delay to match the smooth scrolling duration
-        }
+    });
 
-      const chatbox = document.getElementById("chatbox");
-      const userMessageElement = document.getElementById("user-message");
-      const sendBtn = document.getElementById("send-btn");
-      const recommendedQuestions = document.getElementById("recommended-questions");
-      const chatbotContainer = document.getElementById("chatbot-container");
-      const chatbotToggler = document.getElementById("chatbot-toggler");
-      const closeBtn = document.getElementById("close-btn");
-      const refreshBtn = document.getElementById("refresh-btn");
+    // Toggle chatbot display
+    chatbotToggler.addEventListener("click", () => {
+      chatbotContainer.style.display =
+        chatbotContainer.style.display === "none" ? "block" : "none";
+    });
 
-      const questionsSet = [
-        [
-          "How to start navigation",
-          "nearest restrooms",
-          "find the main entrance",
+    // Close chatbot when close button is clicked
+    closeBtn.addEventListener("click", () => {
+      chatbotContainer.style.display = "none";
+    });
 
-        ],
-        [
-          "time to reach my destination",
-          "way to the cafeteria",
-          "shortcut to the library",
+    // Refresh recommended questions when refresh icon is clicked
+    refreshBtn.addEventListener("click", renderQuestions);
+    // Initial render of questions
+    renderQuestions();
 
-        ],
-        [
-          "is there an elevator nearby",
-          "help finding the conference room",
-          "landmarks near me",
-        ],
-      ];
+    jQuery(document).ready(function () {
+      jQuery('.faq-question').click(function () {
+        jQuery(this).next('.faq-answer').toggle();
+      });
+    });
 
-      // Function to render recommended questions
-      const renderQuestions = () => {
-        recommendedQuestions.innerHTML = "";
-        const randomSet =
-          questionsSet[Math.floor(Math.random() * questionsSet.length)];
-        randomSet.forEach((question) => {
-          const listItem = document.createElement("li");
-          listItem.textContent = question;
-          listItem.addEventListener("click", () => sendMessage(question));
-          recommendedQuestions.appendChild(listItem);
-        });
+    const feedbackForm = document.getElementById('feedback-form');
+    const feedbackMessage = document.getElementById('feedback-message');
+
+    feedbackForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const feedbackType = document.getElementById('feedback-type').value;
+      const feedbackText = document.getElementById('feedback').value.trim();
+      const rating = document.getElementById('rating').value;
+
+      if (name && email && feedbackType && feedbackText && rating) {
+        // Simulate form submission
+        feedbackMessage.textContent = 'Thank you for your feedback, ' + name + '!';
+        feedbackMessage.style.color = 'green';
+
+        // Optionally send the feedback to a server via an API (uncomment to use)
+        // submitFeedback(name, email, feedbackType, feedbackText, rating);
+
+        // Reset the form
+        feedbackForm.reset();
+      } else {
+        feedbackMessage.textContent = 'Please fill in all fields!';
+        feedbackMessage.style.color = 'red';
+      }
+    });
+
+    // Function to handle API submission (Optional)
+    function submitFeedback(name, email, feedbackType, feedbackText, rating) {
+      const data = {
+        name: name,
+        email: email,
+        feedbackType: feedbackType,
+        feedback: feedbackText,
+        rating: rating
       };
 
-      // Function to send a message and receive a response
-      const sendMessage = (message) => {
-        if (!message) return;
-
-        // Add user's message to chat
-        const outgoingChat = document.createElement("li");
-        outgoingChat.classList.add("chat", "outgoing");
-        outgoingChat.innerHTML = `<p>${message}</p>`;
-        chatbox.appendChild(outgoingChat);
-
-        // Simulate bot response
-        const incomingChat = document.createElement("li");
-        incomingChat.classList.add("chat", "incoming");
-        incomingChat.innerHTML = `<p>Let me check that for you...</p>`;
-        chatbox.appendChild(incomingChat);
-
-        chatbox.scrollTop = chatbox.scrollHeight;
-
-        // Simulated delay for response
-        setTimeout(() => {
-          const botResponse = generateBotResponse(message);
-          incomingChat.querySelector("p").textContent = botResponse;
-        }, 1000);
-      };
-
-      // Function to generate bot responses
-      const generateBotResponse = (message) => {
-        const responses = {
-          "start navigation":
-            "To start navigation, please enter your current location and your destination.",
-          "nearest restrooms":
-            "Sure! Please allow me access to your current location, and I'll show you the nearest restrooms.",
-          "find the main entrance":
-            "The main entrance is marked with a large blue arrow in the AR view. Just follow the arrow to reach the main entrance.",
-          "landmarks near me":
-            "I can help with that! Let me access your location to show nearby landmarks on your AR view.",
-          "time to reach my destination":
-            "Based on your current location and the destination, it should take approximately 10 minutes on foot.",
-          "shortcut to the library":
-            "Yes, there is a shortcut. Follow the highlighted path in your AR view to take the quickest route to the library.",
-          "way to the cafeteria":
-            "Sure! Follow the green path in your AR view to reach the cafeteria.",
-          "help finding the conference room":
-            "No problem! Just enter the name or number of the conference room, and I will guide you there.",
-          "find a charging station":
-            "There are charging stations located throughout the building. Let me show them in your AR view.",
-          "is there an elevator nearby":
-            "Yes, there's an elevator close to you. Follow the yellow path in your AR view to reach it.",
-          // Additional responses can be added as needed
-        };
-        return (
-          responses[message] || "Sorry, I do not have information on that topic."
-        );
-      };
-
-      // Event listener for send button
-      sendBtn.addEventListener("click", () => {
-        const userMessage = userMessageElement.value.trim();
-        sendMessage(userMessage);
-        userMessageElement.value = "";
-      });
-
-      // Allow Enter key to send message
-      userMessageElement.addEventListener("keypress", (e) => {
-        if (e.key === "Enter" && !e.shiftKey) {
-          e.preventDefault();
-          sendBtn.click();
-        }
-      });
-
-      // Toggle chatbot display
-      chatbotToggler.addEventListener("click", () => {
-        chatbotContainer.style.display =
-          chatbotContainer.style.display === "none" ? "block" : "none";
-      });
-
-      // Close chatbot when close button is clicked
-      closeBtn.addEventListener("click", () => {
-        chatbotContainer.style.display = "none";
-      });
-
-      // Refresh recommended questions when refresh icon is clicked
-      refreshBtn.addEventListener("click", renderQuestions);
-      // Initial render of questions
-      renderQuestions();
-
-      jQuery(document).ready(function() {
-        jQuery('.faq-question').click(function() {
-          jQuery(this).next('.faq-answer').toggle();
+      fetch('/submit-feedback', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+        .then(response => response.json())
+        .then(data => {
+          feedbackMessage.textContent = 'Thank you for your feedback!';
+          feedbackMessage.style.color = 'green';
+          feedbackForm.reset();
+        })
+        .catch(error => {
+          feedbackMessage.textContent = 'Error submitting feedback. Please try again later.';
+          feedbackMessage.style.color = 'red';
         });
-      });
-    
+    }
+
   </script>
 
 </body>
