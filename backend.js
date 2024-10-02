@@ -61,7 +61,8 @@ app.post('/login', (req, res) => {
     }
 
     // Query to find the user with encrypted password
-    const query = 'SELECT * FROM users WHERE MoodleId = ? AND Password = SHA(?, 256)';
+    const query = 'SELECT * FROM users WHERE MoodleId = ? AND Password = SHA2(?, 256)';
+
     db.query(query, [MoodleId, Password], (err, result) => {
         if (err) {
             console.error('Database query error:', err);
